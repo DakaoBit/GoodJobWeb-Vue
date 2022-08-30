@@ -118,7 +118,7 @@
         </div>
         <div class="j_border row">
         <div class="d-grid gap-2 p-1">
-            <button id="btnSubmit" @click="Submit" class="btn btn-dark" type="button">Post</button>
+            <button id="btnSubmit" @click="Submit" class="btn bg_premium" type="button">Post</button>
         </div>
     </div>
 </template>
@@ -129,37 +129,37 @@ async function ValidateInput(paremeters) {
 
 
     if (_.isEmpty(mail)) {
-        swalTip("Warning", "Email is Required");
+        swalPremium("Warning", "Email is Required");
         return;
     }
     if (!ValidateEmail(mail)) {
-        swalTip("Warning", "Email Format Error");
+        swalPremium("Warning", "Email Format Error");
         return;
     }
     if (_.isEmpty(companyName)) {
-        swalTip("Warning", "Company Name is Required");
+        swalPremium("Warning", "Company Name is Required");
         return;
     }
     if (_.isEmpty(title)) {
-        swalTip("Warning", "Job Title is Required");
+        swalPremium("Warning", "Job Title is Required");
         return;
     }
     let type = GetSelectedOptionValue("type");
     if (_.isEmpty(type)) {
-        swalTip("Warning", "Job Type is Required");
+        swalPremium("Warning", "Job Type is Required");
         return;
     }
     if (_.isEmpty(skill)) {
-        swalTip("Warning", "Job Skill is Required");
+        swalPremium("Warning", "Job Skill is Required");
         return;
     }
     let level = GetSelectedOptionValue("level");
     if (_.isEmpty(level)) {
-        swalTip("Warning", "Job Level is Required");
+        swalPremium("Warning", "Job Level is Required");
         return;
     }
     if (_.isEmpty(location)) {
-        swalTip("Warning", "Job Location is Required");
+        swalPremium("Warning", "Job Location is Required");
         return;
     }
     let description = document.getElementById("description").value;
@@ -172,11 +172,11 @@ async function ValidateInput(paremeters) {
                 return;
             }
     if (_.isEmpty(link)) {
-        swalTip("Warning", "Link is Required");
+        swalPremium("Warning", "Link is Required");
         return;
     }
     if (!ValidateURL(link)) {
-        swalTip("Warning", "Link is not an url");
+        swalPremium("Warning", "Link is not an url");
         return;
     }
 
