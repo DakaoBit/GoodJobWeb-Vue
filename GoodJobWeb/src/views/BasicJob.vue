@@ -198,7 +198,7 @@ const Submit = async () => {
         };
 
         console.log(obj);
-        var result = await httpPost("http://localhost:5173/jobpost/getCompanyPost", obj);
+        // var result = await httpPost("http://localhost:5173/jobpost/getCompanyPost", obj);
     }
 }
 </script>
