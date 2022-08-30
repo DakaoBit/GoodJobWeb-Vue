@@ -94,8 +94,7 @@
             <label class="form-label h2 p-xl-2">Remote friendly</label>
             <div class="p-xl-2 p-lg-2 p-md-2 p-sm-2">
                 <div class="form-check form-switch form-switch-lg">
-                    <input id="isRemote" @click="selectRemote(this)" class="form-check-input" type="checkbox"
-                        value="0">
+                    <input id="isRemote" @click="selectRemote(this)" class="form-check-input" type="checkbox" value="0">
                 </div>
             </div>
         </div>
@@ -116,9 +115,9 @@
 </template>
 
 <script setup>
-function ValidateInput(paremeters) {
+async function ValidateInput(paremeters) {
     var { mail, companyName, title, skill, location, isRemote, link } = paremeters;
- 
+
 
     if (_.isEmpty(mail)) {
         swalTip("Warning", "Email is Required");
@@ -170,19 +169,21 @@ function ValidateInput(paremeters) {
  * 是否為遠端 0:否 1:是
  * @param {*} chk 
  */
-const selectRemote = (chk) => {
+ const selectRemote = async () => {
+    var chk = document.getElementById("isRemote");
     if (chk.checked)
         chk.value = 1;
     else
         chk.value = 0;
 }
 
-const Submit = () => {
+const Submit = async () => {
     var paremeters = GetAllInputValue();
 
-    if (ValidateInput(paremeters) == true) {
+    if (await ValidateInput(paremeters) == true) {
         // let url = location.protocol + '//' + location.host;
         // var apiUrl = url + "/jobpost/getCompanyPost";
+
         var { mail, companyName, title, skill, location, isRemote, link } = paremeters;
         var obj = {
             mail,
@@ -197,7 +198,7 @@ const Submit = () => {
         };
 
         console.log(obj);
-        // var result = await httpPost(apiUrl, obj);
+        var result = await httpPost("http://localhost:5173/jobpost/getCompanyPost", obj);
     }
 }
 </script>
