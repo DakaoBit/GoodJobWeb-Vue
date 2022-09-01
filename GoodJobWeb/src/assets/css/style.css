@@ -29,12 +29,17 @@
    background-color: var(--basic-color);
  }
 
+ .bg_dark{
+  background-color: var(--sumi-color);
+ }
+
  .bg_premium {
    background-color: var(--premium-color);
  }
 
  .btn_basic,
- .btn_premium {
+ .btn_premium,
+ .btn_dark {
    cursor: pointer;
  }
 
@@ -54,6 +59,18 @@
  .btn_premium:hover>a {
    color: var(--basic-color);
  }
+
+ .btn_dark a{
+  color: var(--basic-color) !important;
+ }
+
+ .btn_dark:hover {
+  background-color: var(--basic-color);
+}
+
+.btn_dark:hover>a {
+  color: var(--sumi-color) !important;
+}
 
  .sticky-header {
    position: fixed;
@@ -102,7 +119,6 @@
      transform: translateX(calc(-100% - 2rem));
    }
  }
-
 
  .j_search_wrap {
    position: relative;
