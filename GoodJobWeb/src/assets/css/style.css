@@ -13,6 +13,43 @@
    font-family: 'Noto Sans TC', sans-serif;
  }
 
+ .flex_center {
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
+
+ .flex_start {
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: start;
+ }
+
+ .flex_space_around {
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+ }
+
+ .flex_center_column {
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+ }
+
+ .flex_start_column {
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: start;
+ }
+
  a {
    text-decoration: none;
    color: #000;
