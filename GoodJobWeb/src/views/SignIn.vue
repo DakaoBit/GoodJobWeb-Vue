@@ -1,7 +1,7 @@
 <template>
   <div class="row justify-content-md-center mt-5">
     <div class="container" id="container">
-      <div class="form-container sign-up-container">
+      <div class="form_container sign_up_container">
         <form action="#">
           <h1>Create Account</h1>
 
@@ -11,7 +11,7 @@
           <button>Sign Up</button>
         </form>
       </div>
-      <div class="form-container sign-in-container">
+      <div class="form_container sign_in_container">
         <form action="#">
           <h1>Sign in</h1>
           <input type="email" placeholder="Email" />
@@ -20,16 +20,16 @@
           <button>Sign In</button>
         </form>
       </div>
-      <div class="overlay-container">
+      <div class="overlay_container">
         <div class="overlay">
-          <div class="overlay-panel overlay-left">
+          <div class="overlay_panel overlay_left">
             <h1>Welcome Back!</h1>
             <p>
               To keep connected with us please login with your personal info
             </p>
             <button class="ghost" id="signIn">Sign In</button>
           </div>
-          <div class="overlay-panel overlay-right">
+          <div class="overlay_panel overlay_right">
             <h1>Hello, Friend!</h1>
             <p>Enter your personal details and start journey with us</p>
             <button class="ghost" id="signUp">Sign Up</button>
@@ -121,31 +121,31 @@ input {
   min-height: 480px;
 }
 
-.form-container {
+.form_container {
   position: absolute;
   top: 0;
   height: 100%;
   transition: all 0.6s ease-in-out;
 }
 
-.sign-in-container {
+.sign_in_container {
   left: 0;
   width: 50%;
   z-index: 2;
 }
 
-.container.right-panel-active .sign-in-container {
+.container.right-panel-active .sign_in_container {
   transform: translateX(100%);
 }
 
-.sign-up-container {
+.sign_up_container {
   left: 0;
   width: 50%;
   opacity: 0;
   z-index: 1;
 }
 
-.container.right-panel-active .sign-up-container {
+.container.right-panel-active .sign_up_container {
   transform: translateX(100%);
   opacity: 1;
   z-index: 5;
@@ -166,7 +166,7 @@ input {
   }
 }
 
-.overlay-container {
+.overlay_container {
   position: absolute;
   top: 0;
   left: 50%;
@@ -177,7 +177,7 @@ input {
   z-index: 100;
 }
 
-.container.right-panel-active .overlay-container {
+.container.right-panel-active .overlay_container {
   transform: translateX(-100%);
 }
 
@@ -201,7 +201,7 @@ input {
   transform: translateX(50%);
 }
 
-.overlay-panel {
+.overlay_panel {
   position: absolute;
   display: flex;
   align-items: center;
@@ -216,20 +216,20 @@ input {
   transition: transform 0.6s ease-in-out;
 }
 
-.overlay-left {
+.overlay_left {
   transform: translateX(-20%);
 }
 
-.container.right-panel-active .overlay-left {
+.container.right-panel-active .overlay_left {
   transform: translateX(0);
 }
 
-.overlay-right {
+.overlay_right {
   right: 0;
   transform: translateX(0);
 }
 
-.container.right-panel-active .overlay-right {
+.container.right-panel-active .overlay_right {
   transform: translateX(20%);
 }
 </style>
