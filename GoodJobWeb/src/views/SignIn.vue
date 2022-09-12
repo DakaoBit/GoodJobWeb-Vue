@@ -5,19 +5,21 @@
         <form action="#">
           <h1>Create Account</h1>
 
-          <input type="text" placeholder="Name" />
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
-          <button>Sign Up</button>
+          <input id="signUpAccount" type="text" placeholder="Account" />
+          <input id="signUpPassword" type="password" placeholder="Password" />
+          <input id="signUpName" type="text" placeholder="Name" />
+          <input id="signUpEmail" type="email" placeholder="Email" />
+
+          <button @click="SignUp">Sign Up</button>
         </form>
       </div>
       <div class="form_container sign_in_container">
         <form action="#">
           <h1>Sign in</h1>
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
+          <input id="signInAccount" type="text" placeholder="Account" />
+          <input id="signInPassword" type="password" placeholder="Password" />
           <a href="#">Forgot your password?</a>
-          <button>Sign In</button>
+          <button @click="SignIn">Sign In</button>
         </form>
       </div>
       <div class="overlay_container">
@@ -39,6 +41,81 @@
     </div>
   </div>
 </template>
+
+<script setup>
+const SignUp = async () => {
+  var paremeters = GetAllInputValue();
+  if ((await ValidateSignUp(paremeters)) == true) {
+    var { signUpAccount, signUpPassword, signUpName, signUpEmail } = paremeters;
+
+    var obj = {
+      account: signUpAccount,
+      passowrd: signUpPassword,
+      name: signUpName,
+      email: signUpEmail,
+    };
+
+    console.log(obj);
+    // var result = await httpPost("http://localhost:5173/public/Register", obj);
+  }
+};
+
+const SignIn = async () => {
+  var paremeters = GetAllInputValue();
+
+  if ((await ValidateSignIn(paremeters)) == true) {
+    // let url = location.protocol + '//' + location.host;
+    // var apiUrl = url + "/public/Login";
+    var { signInAccount, signInPassword } = paremeters;
+
+    var obj = {
+      account: signInAccount,
+      password: signInPassword,
+    };
+
+    console.log(obj);
+    // var result = await httpPost("http://localhost:5173/public/Login", obj);
+  }
+};
+
+async function ValidateSignIn(paremeters) {
+  var { signInAccount, signInPassword } = paremeters;
+
+  if (_.isEmpty(signInAccount)) {
+    swalTip("Warning", "Account is Required");
+    return;
+  }
+
+  if (_.isEmpty(signInPassword)) {
+    swalTip("Warning", "Password is Required");
+    return;
+  }
+}
+
+async function ValidateSignUp(paremeters) {
+  var { signUpAccount, signUpPassword, signUpName, signUpEmail } = paremeters;
+
+  if (_.isEmpty(signUpAccount)) {
+    swalTip("Warning", "Account is Required");
+    return;
+  }
+
+  if (_.isEmpty(signUpPassword)) {
+    swalTip("Warning", "Password is Required");
+    return;
+  }
+
+  if (_.isEmpty(signUpName)) {
+    swalTip("Warning", "Name is Required");
+    return;
+  }
+
+  if (_.isEmpty(signUpEmail)) {
+    swalTip("Warning", "Email is Required");
+    return;
+  }
+}
+</script>
 
 <style>
 h1 {
