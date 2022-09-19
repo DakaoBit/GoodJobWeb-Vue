@@ -2,24 +2,27 @@
   <div class="row justify-content-md-center mt-5">
     <div class="container" id="container">
       <div class="form_container sign_up_container">
-        <form action="#">
+        <form>
           <h1>Create Account</h1>
 
-          <input id="signUpAccount" type="text" placeholder="Account" />
-          <input id="signUpPassword" type="password" placeholder="Password" />
-          <input id="signUpName" type="text" placeholder="Name" />
           <input id="signUpEmail" type="email" placeholder="Email" />
+          <input id="signUpPassword" type="password" placeholder="Password" />
+          <input
+            id="signUpCPassword"
+            type="password"
+            placeholder="Confirm Password"
+          />
 
-          <button @click="SignUp">Sign Up</button>
+          <button type="button" @click="SignUp">Sign Up</button>
         </form>
       </div>
       <div class="form_container sign_in_container">
-        <form action="#">
+        <form>
           <h1>Sign in</h1>
-          <input id="signInAccount" type="text" placeholder="Account" />
+          <input id="signInEmail" type="email" placeholder="Email" />
           <input id="signInPassword" type="password" placeholder="Password" />
           <a href="#">Forgot your password?</a>
-          <button @click="SignIn">Sign In</button>
+          <button type="button" @click="SignIn">Sign In</button>
         </form>
       </div>
       <div class="overlay_container">
@@ -46,13 +49,11 @@
 const SignUp = async () => {
   var paremeters = GetAllInputValue();
   if ((await ValidateSignUp(paremeters)) == true) {
-    var { signUpAccount, signUpPassword, signUpName, signUpEmail } = paremeters;
+    var { signUpEmail, signUpPassword } = paremeters;
 
     var obj = {
-      account: signUpAccount,
-      passowrd: signUpPassword,
-      name: signUpName,
       email: signUpEmail,
+      passowrd: signUpPassword,
     };
 
     console.log(obj);
@@ -66,10 +67,10 @@ const SignIn = async () => {
   if ((await ValidateSignIn(paremeters)) == true) {
     // let url = location.protocol + '//' + location.host;
     // var apiUrl = url + "/public/Login";
-    var { signInAccount, signInPassword } = paremeters;
+    var { signInEmail, signInPassword } = paremeters;
 
     var obj = {
-      account: signInAccount,
+      email: signInEmail,
       password: signInPassword,
     };
 
@@ -79,10 +80,15 @@ const SignIn = async () => {
 };
 
 async function ValidateSignIn(paremeters) {
-  var { signInAccount, signInPassword } = paremeters;
+  var { signInEmail, signInPassword } = paremeters;
 
-  if (_.isEmpty(signInAccount)) {
-    swalTip("Warning", "Account is Required");
+  if (_.isEmpty(signInEmail)) {
+    swalTip("Warning", "Email is Required");
+    return;
+  }
+
+  if (!ValidateEmail(signInEmail)) {
+    swalTip("Warning", "Email Format Error");
     return;
   }
 
@@ -90,13 +96,25 @@ async function ValidateSignIn(paremeters) {
     swalTip("Warning", "Password is Required");
     return;
   }
+
+  if (!ValidateLength(signInPassword, 6, 8)) {
+    swalTip("Warning", "Password Need 6 ~ 8 characters");
+    return;
+  }
+
+  return true;
 }
 
 async function ValidateSignUp(paremeters) {
-  var { signUpAccount, signUpPassword, signUpName, signUpEmail } = paremeters;
+  var { signUpEmail, signUpPassword, signUpCPassword } = paremeters;
 
-  if (_.isEmpty(signUpAccount)) {
-    swalTip("Warning", "Account is Required");
+  if (_.isEmpty(signUpEmail)) {
+    swalTip("Warning", "Email is Required");
+    return;
+  }
+
+  if (!ValidateEmail(signUpEmail)) {
+    swalTip("Warning", "Email Format Error");
     return;
   }
 
@@ -105,15 +123,22 @@ async function ValidateSignUp(paremeters) {
     return;
   }
 
-  if (_.isEmpty(signUpName)) {
-    swalTip("Warning", "Name is Required");
+  if (!ValidateLength(signUpPassword, 6, 8)) {
+    swalTip("Warning", "Password Need 6 ~ 8 characters");
     return;
   }
 
-  if (_.isEmpty(signUpEmail)) {
-    swalTip("Warning", "Email is Required");
+  if (_.isEmpty(signUpCPassword)) {
+    swalTip("Warning", "Confirm Password is Required");
     return;
   }
+
+  if (!ValidatePasswordMatch(signUpPassword, signUpCPassword)) {
+    swalTip("Warning", "Two Password Does Not Match");
+    return;
+  }
+
+  return true;
 }
 </script>
 
